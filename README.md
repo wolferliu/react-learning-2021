@@ -1,2 +1,2 @@
 # react-learning-2021
-Created with CodeSandbox
+Start learning React from scratch

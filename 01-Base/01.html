@@ -1,0 +1,38 @@
+<!doctype html>
+
+<title>01 Element Factory - React From Zero</title>
+
+<script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.0911da3/umd/react-dom.development.js"></script>
+
+<div id="app"></div>
+<div id="anotherApp"></div>
+
+<script>
+  //`React.createElement()`需要 类型-type, 属性-props, 孩子-children. 这比使用普通对象文字的冗长
+  // 这里其实是将HTML/CSS转成了Javascript对象的描述方式
+  // 因为是JS变量了，所以就获得了重复使用的机会
+  var reactElement = React.createElement("h1", // type
+  { // props
+
+    className: "abc", 
+
+    style: {
+      textAlign: "center",
+    },
+
+    onClick: function () { alert("click") },
+
+  }, "Hello, world!") // children
+
+  // 第二个参数是 属性-props 对象 ,如果为空,则必须为null
+  var anotherElement = React.createElement("p", null, "A nice text paragraph.")
+
+  var renderTarget = document.getElementById("app")
+
+  // 将一个React对象 “显示(render)” 到一个HTML Element上
+  ReactDOM.render(reactElement, renderTarget)
+  
+  ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
+
+</script>

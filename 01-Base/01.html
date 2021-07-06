@@ -5,8 +5,15 @@
 <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
 <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.0911da3/umd/react-dom.development.js"></script>
 
+<style>
+  .red-line {
+    color:red;
+  }
+</style>
+
 <div id="app"></div>
-<div id="anotherApp"></div>
+<div id="anotherApp">  </div>
+<div id="imageApp"</div>
 
 <script>
   //`React.createElement()`需要 类型-type, 属性-props, 孩子-children. 这比使用普通对象文字的冗长
@@ -24,9 +31,17 @@
     onClick: function () { alert("click") },
 
   }, "Hello, world!") // children
+  //<h1 class="abc" style="textAlign:'center' onClick='alert(\"click\"")'">Hello, world!</h1>
 
   // 第二个参数是 属性-props 对象 ,如果为空,则必须为null
-  var anotherElement = React.createElement("p", null, "A nice text paragraph.")
+  var anotherElement = React.createElement("p", {
+    style: {
+      color: "red"
+    }
+  }, "A nice text paragraph.")
+
+//作业！
+//创建一个 imageElement，然后rander到imageApp上去，图片可以自己选择
 
   var renderTarget = document.getElementById("app")
 

@@ -7,6 +7,7 @@
 <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
 <div id="app"></div>
+<div id="anotherApp"></div>
 
 <script type="text/babel">
 
@@ -45,13 +46,16 @@ var properties = {
   onClick: function() { alert("click") },
 }
 
-reactElement =
+anotherElement =
   <div {...properties}>
     <h1>Hello</h1>
     <h2>world</h2>
   </div>
 
+
 var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
+ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
+
 </script>

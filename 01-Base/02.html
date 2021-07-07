@@ -53,9 +53,14 @@ var anotherElement = <p>A nice text paragraph.</p>
 //作业：
 //用 JSX 语法，来写一个<a> 的element，文字是Facebook，点击后在新的页面打开facebook
 
+let thatOtherElement = React.createElement("a", {
+  href: twitter.com
+}, Twitter)
+
 // 正如我们所看到的,其他一切和以前一样
 var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
 ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
+ReactDOM.render(thatOtherElement, renderTarget)
 </script>

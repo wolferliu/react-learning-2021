@@ -42,12 +42,12 @@
 
 //作业！
 //创建一个 imageElement，然后rander到imageApp上去，图片可以自己选择
-  let someRandomImage = <a href="#"><img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fhatrabbits.com%2Fwp-content%2Fuploads%2F2017%2F01%2Frandom.jpg&imgrefurl=https%3A%2F%2Fhatrabbits.com%2Fen%2Frandom-image%2F&tbnid=jsbCYSW7o-fL-M&vet=12ahUKEwiFr6jh7c_xAhXQSawKHRYGCLUQMygCegUIARCPAQ..i&docid=eLpSyvMoM8brnM&w=787&h=444&q=some%20random%20images&ved=2ahUKEwiFr6jh7c_xAhXQSawKHRYGCLUQMygCegUIARCPAQ" alt="Nice image."></a>;
+  let someRandomImage = <a href="#"><img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fhatrabbits.com%2Fwp-content%2Fuploads%2F2017%2F01%2Frandom.jpg&imgrefurl=https%3A%2F%2Fhatrabbits.com%2Fen%2Frandom-image%2F&tbnid=jsbCYSW7o-fL-M&vet=12ahUKEwiFr6jh7c_xAhXQSawKHRYGCLUQMygCegUIARCPAQ..i&docid=eLpSyvMoM8brnM&w=787&h=444&q=some%20random%20images&ved=2ahUKEwiFr6jh7c_xAhXQSawKHRYGCLUQMygCegUIARCPAQ" alt="Nice image."></a>
 
   let someRandomImage2 = React.createElement("img", {
     src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fhatrabbits.com%2Fwp-content%2Fuploads%2F2017%2F01%2Frandom.jpg&imgrefurl=https%3A%2F%2Fhatrabbits.com%2Fen%2Frandom-image%2F&tbnid=jsbCYSW7o-fL-M&vet=12ahUKEwiFr6jh7c_xAhXQSawKHRYGCLUQMygCegUIARCPAQ..i&docid=eLpSyvMoM8brnM&w=787&h=444&q=some%20random%20images&ved=2ahUKEwiFr6jh7c_xAhXQSawKHRYGCLUQMygCegUIARCPAQ",
     alt: "Nice image."
-  }, ;
+  }, )
 
   var renderTarget = document.getElementById("app")
 
@@ -56,6 +56,6 @@
   
   ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
 
-  ReactDOM.render(someRandomImage2)
+  ReactDOM.render(someRandomImage2, renderTarget)
 
 </script>

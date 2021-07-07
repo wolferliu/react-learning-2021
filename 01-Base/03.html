@@ -22,17 +22,18 @@ var reactElement =
 // 他们也可以像 第 2 课中, 提到的那样包含`JavaScript`在`{}`
 var myClass = "abc"
 
-function myText() { return "world" }
+function myText() { return "world in JS" }
 
 // `JavaScript`插入在属性中的语法, 与在 普通文本或元素 中的语法相同
 reactElement =
   <div className={myClass}>
-    <h1>Hello {10 * 10}</h1>
+    <h1>Hello {myClass+" 100"}</h1>
     <h2>{myText()}</h2>
   </div>
 
 // 这个`JavaScript`也可以包含元素,
-var nestedElement = <h2>world</h2>
+
+var nestedElement = <h2>world in nested</h2>
 
 reactElement =
   <div>
@@ -52,6 +53,11 @@ anotherElement =
     <h2>world</h2>
   </div>
 
+/*
+============
+作业：创建一个ordered list，里面有2个list item，这2个list item都要使用提前定义好，然后嵌套放入ordered list
+============
+*/
 
 var renderTarget = document.getElementById("app")
 

@@ -14,6 +14,7 @@
 
 <div id="app"></div>
 <div id="anotherApp"></div>
+<div id="facebook"></div>
 
 <script type="text/babel">
 // JSX is the idiomatic way of creating elements.
@@ -29,7 +30,6 @@ var reactElement =
     onClick={function() { alert("click") }}>
     Hello, world!
   </h1>
-
 // 是相同的
 /*
 reactElement =
@@ -53,12 +53,13 @@ var anotherElement = <p>A nice text paragraph.</p>
 //作业：
 //用 JSX 语法，来写一个<a> 的element，文字是Facebook，点击后在新的页面打开facebook
 
-let thatOtherElement = <a href: twitter.com>Twitter</a>
+let thatOtherElement= 
+  <a href = "https://www.facebook.com/">Facebook</a>
 
 // 正如我们所看到的,其他一切和以前一样
 var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
 ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
-ReactDOM.render(thatOtherElement, renderTarget)
+ReactDOM.render(thatOtherElement, document.getElementById("facebook"))
 </script>

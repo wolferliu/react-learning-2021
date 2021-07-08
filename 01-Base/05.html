@@ -20,17 +20,17 @@ function MyComponent(props) {
   )
 }
 
-var reactElement = <MyComponent className="abc" customData="world"/>
+//var reactElement = <MyComponent className="abc" customData="Jack's world"/>
 
 // 这也适用于 对象 和  (...) 运算符
-/*
+
 var props = {
   className: "abc",
-  customData: "world",
+  customData: "world in object",
 }
 
 reactElement = <MyComponent {...props}/>
-*/
+
 
 // 这允许具有 动态内容 的组件
 var planets = ["earth", "mars", "venus"]
@@ -40,6 +40,14 @@ var planets = ["earth", "mars", "venus"]
 var elements = planets.map(function(planet, index) {
   return <MyComponent className="myClass" customData={planet} key={index}/>
 })
+
+/*
+=======================
+作业：
+将第4课写的FruitList中的list item也改写为Component，名为FruitItem，其名字要用props传递进去
+=======================
+*/
+
 
 let anotherElement = <div style={{border:"1px solid"}}>{elements}</div>
 

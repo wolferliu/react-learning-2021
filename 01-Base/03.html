@@ -8,6 +8,7 @@
 
 <div id="app"></div>
 <div id="anotherApp"></div>
+<div id="orderedList"></div>
 
 <script type="text/babel">
 
@@ -58,10 +59,18 @@ anotherElement =
 作业：创建一个ordered list，里面有2个list item，这2个list item都要使用提前定义好，然后嵌套放入ordered list
 ============
 */
+let nestedObj1 = <li>book</li>
+let nestedObj2 = <li>computer</li>
+let orderedList = 
+ <ol>
+  {nestedObj1}
+  {nestedObj2}
+ </ol>
 
 var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
 ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
+ReactDOM.render(orderedList, document.getElementById("orderedList"))
 
 </script>

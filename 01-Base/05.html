@@ -8,6 +8,7 @@
 
 <div id="app"></div>
 <div id="anotherApp"></div>
+<div id="Fruits"></div>
 
 <script type="text/babel">
 // 组件与 元素一样也可以使用 属性-props
@@ -47,7 +48,22 @@ var elements = planets.map(function(planet, index) {
 将第4课写的FruitList中的list item也改写为Component，名为FruitItem，其名字要用props传递进去
 =======================
 */
-
+function FruitItem(props){
+  return (
+    <li>{props.fruitName}</li>
+  )
+}
+function FruitList(){
+  return (
+    <ol>
+      <FruitItem fruitName = "Apple"/>
+      <FruitItem fruitName = "Kiwi"/>
+      <FruitItem fruitName = "Watermelon"/>
+      <FruitItem fruitName = "Pear"/>
+    </ol>
+  )
+}
+let rfruitList = <FruitList></FruitList>
 
 let anotherElement = <div style={{border:"1px solid"}}>{elements}</div>
 
@@ -55,4 +71,5 @@ var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
 ReactDOM.render(anotherElement, document.getElementById("anotherApp"))
+ReactDOM.render(rfruitList, document.getElementById("Fruits"))
 </script>

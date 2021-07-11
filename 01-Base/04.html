@@ -72,17 +72,19 @@ reactElement = <div>
 将03课的order list，用Component的方式写出来，Component name可以是FruitList
 ==================
 */
-fuction FruitList(){
-let Fruit1 = <li>Apple</li>
-let Fruit2 = <li>Kiwi</li>
-let Fruit3 = <li>Watermelon</li>
-let Fruit4 = <li>Pear</li>
-<ol>
-  {Fruit1}
-  {Fruit2}
-  {Fruit3}
-  {Fruit4}
-</ol>
+function FruitList(){
+  let Fruit1 = <li>Apple</li>
+  let Fruit2 = <li>Kiwi</li>
+  let Fruit3 = <li>Watermelon</li>
+  let Fruit4 = <li>Pear</li>
+  return (
+    <ol>
+      {Fruit1}
+      {Fruit2}
+      {Fruit3}
+      {Fruit4}
+    </ol>
+  )
 }
 let rfruitList = <FruitList></FruitList>
 

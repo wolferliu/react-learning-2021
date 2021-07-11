@@ -13,7 +13,7 @@
   // 这是一个更实用的组件,
   // 格式化日期并返回一个`<span>`包含格式化的字符串
 function DateSpan(props) {
-  var date = props.date,
+    var date = props.date,
     day = date.getDate(),
     month = date.getMonth() + 1,
     year = date.getFullYear()
@@ -33,4 +33,23 @@ var reactElement = <DateSpan date={new Date()}/>
 var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
+
+/*
+====================================================
+作业：
+将FruitList和FruitItem拿过来，FruitItem需要有以下属性：
+myFavourite: 应为 boolean 类型，不是必须，默认值是 false。若其值为true，则<li>应该添加 myFav 的className。
+fruitName； 应为 string类型，必须项目。
+quantityEachDay: 应为 int 类型，不是必须，默认是1
+FruitItem最终显示的内容应该类似于： 
+I eat 1 Apple each day, it's my favourite.
+或者
+I eat 1 Apple each day.
+取决于 myFavourite 是true还是false。
+====================================================
+*/
+
+
+
+
 </script>

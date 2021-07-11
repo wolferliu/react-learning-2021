@@ -13,7 +13,7 @@
   .red-text{
     color: red;
   }
-  .default-class{
+  .blue-text{
     color: blue;
   }
 </style>
@@ -43,14 +43,23 @@ MyComponent.propTypes = {
 // 则添加 defaultProps (function-)属性以设置默认
 MyComponent.defaultProps = {
   customData: "default",
-  className: "default-class",
+  className: "blue-text",
 }
 
+let num=123;
 // 这将在控制台中显示警告,因为 customData 应该是一个字符串
-var reactElement = <MyComponent customData={123}/>
+var reactElement = <MyComponent customData={num}/>
 
 // 这将使用默认值
-reactElement = <MyComponent className="red-text"/>
+//reactElement = <MyComponent className="red-text"/>
+
+/*
+====================================================
+作业：
+将上一课的FruitList和FruitItem都拿过来，给FruitItem添加一个可选的prop: className，添加一个css style名为myFav，效果是文字加粗。同时fruitName的默认值是Apple
+====================================================
+*/
+
 
 var renderTarget = document.getElementById("app")
 

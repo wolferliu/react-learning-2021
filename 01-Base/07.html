@@ -57,8 +57,8 @@ I eat 1 Apple each day.
 function FruitItem(props){
   let myClass=props.isMyFavourite?"myFav":null;
   let quantity=props.quantityEachDay
-  let myFavSentence = " I eat " + quantity + " " + props.fruitName + ", it's my favourite."
-  let notMyFavSentence = "I eat " + quantity + " " + props.fruitName + "."
+  let myFavSentence = " I eat " + quantity + " " + props.fruitName + " each day, it's my favourite."
+  let notMyFavSentence = "I eat " + quantity + " " + props.fruitName + " each day."
   if (props.isMyFavourite==true) {
     return (
       <li className={myClass}>{props.fruitName},

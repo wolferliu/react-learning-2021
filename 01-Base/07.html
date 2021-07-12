@@ -2,13 +2,19 @@
 
 <title>07 Property Example - React From Zero</title>
 
+<style>
+  .myFav{
+    font-weight: bold;
+  }
+</style>
+
 <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
 <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.0911da3/umd/react-dom.development.js"></script>
 <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
 <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
 <div id="app"></div>
-
+<div id="Fruits"></div>
 <script type="text/babel">
   // 这是一个更实用的组件,
   // 格式化日期并返回一个`<span>`包含格式化的字符串
@@ -48,8 +54,39 @@ I eat 1 Apple each day.
 取决于 myFavourite 是true还是false。
 ====================================================
 */
+function FruitItem(props){
+  let myClass=props.isMyFavourite?"myFav":null;
+  let quantity=props.quantityEachDay
+  let myFavSentence = " I eat " + quantity + " " + props.fruitName + ", it's my favourite."
+  let notMyFavSentence = "I eat " + quantity + " " + props.fruitName + "."
+  if (props.isMyFavourite==true) {
+    return (
+      <li className={myClass}>{props.fruitName},
+      {myFavSentence}</li>
+    )
+  }
+  else {
+    return (
+      <li className={myClass}>{props.fruitName},
+      {notMyFavSentence}</li>
+    )
+  }
+}
+FruitItem.defaultProps = {
+  fruitName: "Apple",
+}
+function FruitList(){
+  return (
+    <ol>
+      <FruitItem isMyFavourite={true} quantityEachDay = "2"/>
+      <FruitItem fruitName = "Kiwi" quantityEachDay = "1"/>
+      <FruitItem fruitName = "Watermelon" quantityEachDay = "0"/>
+      <FruitItem fruitName = "Pear" quantityEachDay = "1"/>
+    </ol>
+  )
+}
+let rfruitList = <FruitList></FruitList>
 
 
-
-
+ReactDOM.render(rfruitList, document.getElementById("Fruits"))
 </script>

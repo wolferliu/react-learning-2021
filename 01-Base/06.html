@@ -16,10 +16,13 @@
   .blue-text{
     color: blue;
   }
+  .myFav{
+    font-weight: bold;
+  }
 </style>
 
 <div id="app"></div>
-
+<div id="Fruits"></div>
 <script type="text/babel">
 
 // 创建组件来 封装应该在一起的东西 并 重用. 
@@ -46,7 +49,7 @@ MyComponent.defaultProps = {
   className: "blue-text",
 }
 
-let num=123;
+let num="123";
 // 这将在控制台中显示警告,因为 customData 应该是一个字符串
 var reactElement = <MyComponent customData={num}/>
 
@@ -58,10 +61,36 @@ var reactElement = <MyComponent customData={num}/>
 作业：
 将上一课的FruitList和FruitItem都拿过来，给FruitItem添加一个可选的prop: className，添加一个css style名为myFav，效果是文字加粗。同时fruitName的默认值是Apple
 ====================================================
+MyComponent.defaultProps = {
+  customData: "default",
+  className: "blue-text",
+}
 */
+
+function FruitItem(props){
+  let myClass=props.isMyFavourite?"myFav":null;
+  return (
+    <li className={myClass}>{props.fruitName}</li>
+  )
+}
+FruitItem.defaultProps = {
+  fruitName: "Apple",
+}
+function FruitList(){
+  return (
+    <ol>
+      <FruitItem isMyFavourite={true}/>
+      <FruitItem fruitName = "Kiwi"/>
+      <FruitItem fruitName = "Watermelon"/>
+      <FruitItem fruitName = "Pear"/>
+    </ol>
+  )
+}
+let rfruitList = <FruitList></FruitList>
 
 
 var renderTarget = document.getElementById("app")
 
 ReactDOM.render(reactElement, renderTarget)
+ReactDOM.render(rfruitList, document.getElementById("Fruits"))
 </script>

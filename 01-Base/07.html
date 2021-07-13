@@ -59,7 +59,7 @@ function FruitItem(props){
   let quantity=props.quantityEachDay
   let myFavSentence = " I eat " + quantity + " " + props.fruitName + " each day, it's my favourite."
   let notMyFavSentence = "I eat " + quantity + " " + props.fruitName + " each day."
-  if (props.isMyFavourite==true) {
+  if (props.isMyFavourite) {
     return (
       <li className={myClass}>{props.fruitName},
       {myFavSentence}</li>
@@ -72,16 +72,21 @@ function FruitItem(props){
     )
   }
 }
+FruitItem.propTypes = {
+  fruitName: PropTypes.string.isRequired,
+  quantityEachDay: PropTypes.number,
+  isMyFavourite: PropTypes.bool,
+}
 FruitItem.defaultProps = {
-  fruitName: "Apple",
+  quantityEachDay: 1,
 }
 function FruitList(){
   return (
     <ol>
-      <FruitItem isMyFavourite={true} quantityEachDay = "2"/>
-      <FruitItem fruitName = "Kiwi" quantityEachDay = "1"/>
-      <FruitItem fruitName = "Watermelon" quantityEachDay = "0"/>
-      <FruitItem fruitName = "Pear" quantityEachDay = "1"/>
+      <FruitItem fruitName = "Apple" isMyFavourite={true} quantityEachDay = {2}/>
+      <FruitItem fruitName = "Kiwi"/>
+      <FruitItem fruitName = "Watermelon" quantityEachDay = {0}/>
+      <FruitItem fruitName = "Pear"/>
     </ol>
   )
 }

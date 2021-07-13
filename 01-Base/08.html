@@ -2,6 +2,13 @@
 
 <title>08 Nested Components - React From Zero</title>
 
+<style>
+  .myFav {
+    font-weight: bold;
+    color: #F00;
+  }
+</style>
+
 <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
 <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.0911da3/umd/react-dom.development.js"></script>
 <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
@@ -13,30 +20,32 @@
 // 为此,子组件内部使用子属性
 
 // 这个组件只是将它的孩子包裹在一个`<li>`元件
-function Item(props) {
-  return <li>{props.children}</li>
+function FruitItem(props) {
+  let ifMyFavorite = props.isMyFavorite?"myFav":null
+  return <li className = {ifMyFavorite}>{props.children}</li>
 }
 
 // 这个组件把它的孩子包装成一个`<ul>`元件
-function List(props) {
+function FruitList(props) {
   return <ul>{props.children}</ul>
 }
 
 // 如果`<List>`没有孩子的时候会创建一个默认的孩子
-List.defaultProps = {
-  children: <Item>Empty</Item>
+FruitList.defaultProps = {
+  children: <FruitItem>Empty</FruitItem>
 }
 
 // now we render two <List>s, without and with Items
 // 现在我们渲染两个`<List>`, 一个有物品,一个没有
 var reactElement =
   <div>
-    <List/>
-    <List>
-      <Item>First</Item>
-      <Item>Second</Item>
-      <Item>Third</Item>
-    </List>
+    <FruitList/>
+    <FruitList>
+      <FruitItem isMyFavorite>First</FruitItem>
+      <FruitItem>Second</FruitItem>
+      <FruitItem>Third</FruitItem>
+      <li>Last</li>
+    </FruitList>
   </div>
 
 var renderTarget = document.getElementById("app")

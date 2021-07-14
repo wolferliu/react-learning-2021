@@ -14,12 +14,47 @@
 <div id="app"></div>
 
 <script type="text/babel">
+
+//我们现在使用class定义来写Component，
+//请与后面的createReactClass对照，来了解有什么区别
+class MyComponent extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {times: 0};
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(){
+    this.setState(function(prevState, props) {
+      return {times: prevState.times + 1}
+    })
+  }
+  render(){
+    var style = {color: this.props.color}
+    return (
+      <span onClick={this.handleClick} style={style}>
+        Clicked {this.state.times} times
+      </span>
+    )  
+  }
+}
+//这里设置propTypes的写法和使用function时是一样的
+MyComponent.propTypes={
+  color: PropTypes.string,
+}
+
+MyComponent.defaultProps={
+  color: "green",
+}
+
+
+
 // 通常情况下,组件需要维护一些内部状态,
 // 例如,如果在这种情况下涉及交互,
 // 但组件功能不够,
 // 组件功能只能具有属性而没有状态,
 // 我们需要具有 渲染-render 功能 的 组件类
-var MyComponent = createReactClass({
+
+var MyComponent1 = createReactClass({
 
   // 用于与 组件函数 相同的 属性类型检查
   propTypes: {

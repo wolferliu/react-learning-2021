@@ -20,7 +20,7 @@
 // <TaskList>
 //   <Task text="Do something"/>
 //   <Task text="Do nothing"/>
-// </TaskList>
+// </TaskList> 
 
 //  Task 需要一个 文本属性
 function Task(props) {
@@ -38,9 +38,16 @@ function TaskList(props) {
   )
 }
 
+/*
+=====================
+作业
+将TaskInput和TodoApp改写为ES6的class语法
+=====================
+*/
+
 // 这个组件处理输入
 // 它需要是一个类,因为`<input>`元素是有状态的
-var TaskInput = createReactClass({
+var TaskInput1 = createReactClass({
 
   getInitialState: function() {
     return {value: ""}
@@ -81,7 +88,7 @@ var TaskInput = createReactClass({
 })
 
 // 该应用程序跟踪其当前 Task 状态
-var TodoApp = createReactClass({
+var TodoApp1 = createReactClass({
 
   getInitialState: function() {
     return {tasks: []}
@@ -107,7 +114,7 @@ var TodoApp = createReactClass({
     // 添加 处理程序-`this.handleAdd` 到`<TaskInput>`组件
     return (
       <div style={{width: 300, margin: "auto"}}>
-
+        <br/><br/><br/>
         <TaskInput onAdd={this.handleAdd}/>
 
         <TaskList>

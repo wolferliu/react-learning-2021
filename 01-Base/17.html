@@ -1,0 +1,109 @@
+<!doctype html>
+
+<title>17 Function Component and useState - React From Zero</title>
+
+<script src="https://cdn.bootcss.com/react/17.0.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/17.0.2/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<div id="app"></div>
+
+<script type="text/babel">
+const { useState, useRef } = React
+
+//  Task 需要一个 文本属性
+function Task(props) {
+  return <li>{props.text}</li>
+}
+
+// TaskList 需要在其 子属性 中包含 Task 数组
+function TaskList(props) {
+  // 打印第一个粗体元素
+  return (
+    <ul>
+      <b key={0}>{props.children[0]}</b>
+      {props.children.slice(1)}
+    </ul>
+  )
+}
+
+function TaskInput(props){
+  const [value, setValue]=useState("");
+
+  const handleChange=(e)=>{
+    setValue(e.target.value);
+  }
+  const handleAdd1=()=>{
+    if (!value) return;
+    props.onAdd(value);
+    setValue("");
+  }
+  return (
+    <div>
+      <input
+        placeholder="Enter Task	."
+        value={value}
+        onChange={handleChange}/>
+      <button onClick={handleAdd1}>Add</button>
+    </div>
+  )
+}
+
+function TaskInputWithRef(props){
+  const inputRef=useRef();
+
+  const handleAdd1=()=>{
+    let value=inputRef.current.value;
+    if (!value) return;
+    props.onAdd(value);
+    inputRef.current.value="";
+  }
+  return (
+    <div>
+      <input
+        placeholder="Enter Task	."
+        ref={inputRef}/>
+      <button onClick={handleAdd1}>Add</button>
+    </div>
+  )
+}
+
+function TodoApp(props){
+  const [tasks, setTasks]=useState([]);
+
+  const handleAdd=(task)=>{
+    // 这迫使了`<TodoApp>`渲染组件
+    // 注意，不能直接往tasks中加内容，这样不会更新
+    setTasks([task].concat(tasks));
+  };
+
+  const taskElements = tasks.map(function(task, index) {
+    return <Task key={index} text={task}/>
+  })
+
+  // 一些简单的样式和
+  // 添加 处理程序-`handleAdd` 到`<TaskInput>`组件
+  return (
+    <div style={{width: 300, margin: "auto"}}>
+      <br/><br/><br/>
+      <p>Todo List</p>
+      <TaskInput onAdd={handleAdd}/>
+      <TaskList>
+        {taskElements}
+      </TaskList>
+      <br/><br/><br/>
+      <p>Todo List(with Ref)</p>
+      <TaskInputWithRef onAdd={handleAdd}/>
+      <TaskList>
+        {taskElements}
+      </TaskList>
+    </div>
+  )
+
+}
+
+var renderTarget = document.getElementById("app")
+
+ReactDOM.render(<TodoApp/>, renderTarget)
+
+</script>

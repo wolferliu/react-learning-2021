@@ -10,54 +10,35 @@
 <div id="app"></div>
 
 <script type="text/babel">
-// 如果我们使用 组件类,我们的组件会继承
-// 一堆`React`在特定的时间调用的方法, 
-// 这些方法让我们对我们的组件有更多的控制,
-// 其中一些我们已经在 第9课 中遇到过. 
-// 下面有几个新组件. 并不是代表全部,但却是最重要的
+
 var TRANSLATION_FROM_SOMEWHERE = "Text from a synchronous source."
 
-var MyComponent = createReactClass({
-  // 这个默认的 prop 值的方法
-  // 是在`props`给我们的组件之前被调用的
-  // 如果有传递"真实"`props`下来,那么会覆盖默认
-  getDefaultProps: function() {
-    return {
-      iGetOverriden: "default",
-      iStayAsIAm: "default",
-    }
-  },
+function getServerData(fn) {
+  setTimeout(function() { fn("Data Loaded!") }, 700)
+}
 
-  // 这个方法在 组件被 装载-mounted 到 DOM 之前 被调用,
-  // 它返回的值用于`this.state`
-  getInitialState: function() {
-    return {serverData: null}
-  },
-
-  // 在装载组件之前调用此方法
-  // 可用于初始化某些同步配置,
-  // 该配置在组件渲染前,应该可用
-  componentWillMount: function() {
+class MyComponent extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={serverData: null};
+  }
+  //控件即将挂载到页面上时执行，此时控件还没有显示
+  componentWillMount() {
     this.TEXT = TRANSLATION_FROM_SOMEWHERE
-  },
+  }
 
-  // 这个方法在组件被挂载后 立即调用,
-  // 这是启动一些异步任务的好地方. 
-  // 例如,在第一个 mount 上显示一个加载消息,
-  // 然后调用 componentDidMount 并获取一些服务器数据.
-  componentDidMount: function() {
+  //控件已经挂载，这里通常可以开始做数据加载等动作
+  componentDidMount() {
 
-    var component = this
+    const component = this
 
     // 我们清理数据, 并从某处获得新的信息
     function loadData() {
-
       component.setState({serverData: null})
 
       getServerData(function(data) {
         component.setState({serverData: data})
       })
-
     }
 
     // 初始数据加载
@@ -66,27 +47,21 @@ var MyComponent = createReactClass({
     // 我们每4秒模拟一次服务器请求
     this.updateInterval = setInterval(loadData, 4000)
 
-  },
+  }
 
-  // 这个方法在组件被移除之前被调用. 有点像自毁
-  // 在这里,我们可以做一些清理.
-  componentWillUnmount: function() {
-
+  //控件即将从页面消失时，执行这段代码
+  //通常用来做一些清理工作，比如说这里将定时关掉
+  componentWillUnmount() {
+    alert("componentWillUnmount");
     clearInterval(this.updateInterval)
+  }
 
-  },
-
-  // 这个方法在渲染之前 `props`或状态是可用的时 调用,
-  // 它不会在第一个渲染 或 `this.forceUpdate()`调用时使用
-  // 如果某些 状态 或 props 变化后,不需要重新渲染,可以使用它做些条件返回
-  shouldComponentUpdate: function(nextProps, nextState) {
-
-    // 我们想要在每次更改时渲染,这是默认行为
+  //可以根据props以及state来决定是否要更新，默认就是返回true，所以此处可以不写
+  shouldComponentUpdate(nextProps, nextState) {
     return true
+  }
 
-  },
-
-  render: function() {
+  render() {
     return (
       <h2 style={{width: 400, margin: "auto"}}>
 
@@ -102,13 +77,41 @@ var MyComponent = createReactClass({
         }
       </h2>
     )
-  },
+  }
 
-})
-
-function getServerData(fn) {
-  setTimeout(function() { fn("Data Loaded!") }, 700)
 }
 
-ReactDOM.render(<MyComponent iGetOverriden={"override"}/>, document.getElementById("app"))
+MyComponent.defaultProps={
+  iGetOverriden: "default",
+  iStayAsIAm: "default",
+}
+
+//父控件
+class ParentComponent extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={showComponent: true};
+    this.handleClick=this.handleClick.bind(this);
+  }
+  handleClick(){
+    this.setState(function(prevState, props) {
+      return {showComponent: !prevState.showComponent}
+    });
+  }
+  render(){
+    let component=this.state.showComponent
+        ? <MyComponent iGetOverriden={"override"}/>
+        : <p>don't show the component</p>
+    return (
+      <React.Fragment>
+        {component}
+        <br/>
+        <button onClick={this.handleClick}>Toggle</button>
+      </React.Fragment>
+    )
+  }
+}
+
+
+ReactDOM.render(<ParentComponent/>, document.getElementById("app"))
 </script>

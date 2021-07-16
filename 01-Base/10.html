@@ -44,22 +44,17 @@ function TaskList(props) {
 将TaskInput和TodoApp改写为ES6的class语法
 =====================
 */
-
-// 这个组件处理输入
-// 它需要是一个类,因为`<input>`元素是有状态的
-var TaskInput1 = createReactClass({
-
-  getInitialState: function() {
-    return {value: ""}
-  },
-
-  // 当有人在`<input>`元素输入时, 被调用
-  handleChange: function(e) {
+class TaskInput extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {value: ""}
+    this.handleAdd = this.handleAdd.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(e){
     this.setState({value: e.target.value})
-  },
-
-  // 当有人在`<button>`元素点击时, 被调用
-  handleAdd: function(e) {
+  }
+  handleAdd(e){
     if (!this.state.value) return
 
     // 调用添加到其 onAdd 属性, props.onAdd 函数,
@@ -67,10 +62,8 @@ var TaskInput1 = createReactClass({
 
     // 清除状态,以便在添加后, 输入再次为空
     this.setState({value: ""})
-  },
-
-  // 每次有人 输入或添加 时渲染元素
-  render: function() {
+  }
+  render(){
     return (
       <div>
 
@@ -83,27 +76,28 @@ var TaskInput1 = createReactClass({
 
       </div>
     )
-  },
-
-})
+  }
+}
 
 // 该应用程序跟踪其当前 Task 状态
-var TodoApp1 = createReactClass({
+class TodoApp extends React.Component{
 
-  getInitialState: function() {
-    return {tasks: []}
-  },
+  constructor(props){
+    super(props);
+    this.state = {tasks: []}
+    this.handleAdd = this.handleAdd.bind(this)
+  }
 
     // 这个回调会被插入到`<TaskInput>`组件的 onAdd 属性「props.onAdd」中
-  handleAdd: function(task) {
+  handleAdd(task){
     // 增加一项新 Task 
     var tasks = [task].concat(this.state.tasks)
 
     // 这迫使了`<TodoApp>`渲染组件
     this.setState({tasks: tasks})
-  },
+  }
 
-  render: function() {
+  render(){
     // create the list of <Task> components from the tasks array in the state
       // 创建来自 state.tasks 数组中的 的`<Task>`列表组件
     var taskElements = this.state.tasks.map(function(t, i) {
@@ -123,9 +117,9 @@ var TodoApp1 = createReactClass({
 
       </div>
     )
-  },
+  }
 
-})
+}
 
 var renderTarget = document.getElementById("app")
 

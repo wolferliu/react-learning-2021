@@ -3,8 +3,8 @@
 原课程来自  
 https://github.com/kay-is/react-from-zero  
 和  
-https://github.com/chinanf-boy/react-from-zero
-但是做了一些改动，并且在小朋友做了一些作业之后，内容有了不少变化。
+https://github.com/chinanf-boy/react-from-zero  
+但是添加了一些作业要求，并且在完成了作业之后，内容有了不少变化。
 
 尽量将createReactClass换成ES6的class写法。
 
